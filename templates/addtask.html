@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content%}
+<div class="container-fluid pt-4 px-4">
+    <div class="row vh-100 bg-secondary rounded align-items-center justify-content-center mx-0">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4"> Task</h6>
+                <form method="POST" >
+                    {% csrf_token %}
+                    <div class=" mb-3">
+                        <label class="form-label" for="floatingInput">Task Name</label>
+                        <input type="text" class="form-control p-4" id="floatingInput" name="title" value="" required>
+                        
+                    </div>
+                    
+                    
+
+                    <!-- <div class="mb-3">
+                        <label for="floatingTextarea" class="mb-2">Assigned To</label>
+                        <input type="text" class="form-control p-4" id="floatingInput" name="food_name" value="{{food_item.name}}">
+                    </div> -->
+
+                    <div class=" mb-3">
+                        <label for="floatingTextarea" class="mb-2">Description</label>
+                        <textarea class="form-control" placeholder="" id="floatingTextarea" name="description"
+                            style="height: 150px;" required></textarea>
+                    </div>
+
+
+                    <div class=" mb-3">
+                        <label class="form-label" for="floatingInput">Deadline</label>
+                        <input type="date" class="form-control p-4" id="" name="due_date" value="" style="background-color: antiquewhite;">
+                        
+                    </div>
+
+
+                    
+
+                    <button type="submit" class="btn btn-primary">Save Changes</button> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

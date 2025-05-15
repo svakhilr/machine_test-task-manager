@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content%}
+<div class="container-fluid pt-4 px-4">
+    <div class="row  bg-secondary rounded align-items-center justify-content-center mx-0">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4"> Task</h6>
+                <form method="POST" >
+                    {% csrf_token %}
+                    <div class=" mb-3">
+                        <label class="form-label" for="floatingInput">Task Name</label>
+                        <input type="text" class="form-control p-4" id="floatingInput" name="title" value="{{task.title}}">
+                        
+                    </div>
+                    
+                    
+
+                    <div class=" mb-3">
+                        <label for="floatingSelect" class="mb-2">Status</label>
+                        <select class="form-select"  name="task_status"  id="floatingSelect" aria-label="Floating label select example" style="padding: 1rem;">
+                            <option value="pending" {% if task.task_status == "pending" %}selected{%endif%}>Pending</option>
+                            <option value="in_progress" {% if task.task_status == "in_progress" %}selected{%endif%}>IN PROGRESS</option>
+                            <option value="completed" {% if task.task_status == "completed" %}selected{%endif%}>Completed</option>
+                            <!-- {% for cat in categories %}
+                            <option value="{{cat.id}}" {% if cat.id == food_item.category.id %}selected{%endif%}>{{cat.name}}</option>
+                            {% endfor %} -->
+                            
+                        </select>
+                        
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="floatingTextarea" class="mb-2">Assigned To</label>
+
+                        <select class="form-select" name="assigned_to" id="floatingSelect" aria-label="Floating label select example" style="padding: 1rem;">
+                            <option value="" {% if not task.assigned_to %}selected{% endif %}>--------</option>
+                            {% for user in users %}
+                                <option value="{{ user.id }}" {% if task.assigned_to and user.id == task.assigned_to.id %}selected{% endif %}>
+                                    {{ user.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        
+                    </div>
+
+                    <div class=" mb-3">
+                        <label for="floatingTextarea" class="mb-2">Description</label>
+                        <textarea class="form-control" placeholder="" id="floatingTextarea" name="discription" value=""
+                            style="height: 150px;" >{{task.description}}</textarea>
+                    </div>
+
+                    <div class=" mb-3">
+                        <label for="floatingTextarea" class="mb-2">Completion Report</label>
+                        <textarea class="form-control" placeholder="" id="floatingTextarea"  name="completion_report"
+                            style="height: 150px;" value="" >{{task.completion_report}}</textarea>
+                    </div>
+
+                    <div class=" mb-3">
+                        <label class="form-label" for="floatingInput">Worked Hours</label>
+                        <input type="text" class="form-control p-4" id="floatingInput" name="worked_hours" value="{{task.worked_hours}}">
+                        
+                    </div>
+
+
+                    
+
+                    <button type="submit" class="btn btn-primary">Save Changes</button> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

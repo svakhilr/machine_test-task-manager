@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Sale & Revenue Start -->
+ <section class="vh-100">
+<div class="container-fluid pt-4 px-4">
+    
+</div>
+<!-- Sale & Revenue End -->
+
+
+
+
+
+<!-- Recent Sales Start -->
+<div class="container-fluid pt-4 px-4 vh-100">
+    <div class="bg-secondary text-center rounded p-4 h-100">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Users</h6>
+           
+        </div>
+        <div class="">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-white">
+                       
+                        <th scope="col">Name</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Role</th>
+                        
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users%}
+                    
+                    <tr>
+                       
+                        <td>{{user.name}}</td>
+                        <td>
+                            {{user.username}}
+                        </td>
+                        <td>{{ user.role}}</td>
+                    
+                        
+                        
+                        <td><a class="btn btn-sm btn-primary update-status-btn" href="{% url 'delete-user' user.id %}" data-order-id="{{ order.order_id }}">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Recent Sales End -->
+</section>
+
+<script>
+
+
+</script>
+
+
+{% endblock %}
